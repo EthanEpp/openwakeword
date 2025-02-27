@@ -55,4 +55,4 @@ def resample_wav(input_path, output_path, target_sr=16000):
     print(f"Resampled audio saved to {output_path} at {target_sr} Hz")
 
 # Example usage
-resample_wav('/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/examples/audio/false_positive/Zelda FAR Test.wav', '/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/examples/audio/false_positive/Zelda_FAR_output_file_16k.wav')
+resample_wav('examples/record.wav', 'examples/resamples_record.wav')

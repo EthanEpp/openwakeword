@@ -31,7 +31,7 @@ parser.add_argument(
     "--audio_path",
     help="Path to the input audio file (.wav format) to be processed",
     type=str,
-    default="/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/examples/Hey_Zelda.wav",
+    default="examples/resamples_record.wav",
     required=False
 )
 
@@ -72,7 +72,7 @@ while True:
     # Convert audio data to numpy array
     audio = np.frombuffer(audio_data, dtype=np.int16)
     cumulative_audio_time += CHUNK / RATE  # Update time in seconds
-    patience = {"hey_Zelda_8_15": 3}  # e.g., {"model_name": 3} if using patience, or leave as empty if not
+    patience = {"hey_Zelda_8_15": 1}  # e.g., {"model_name": 3} if using patience, or leave as empty if not
     threshold = {"hey_Zelda_8_15": 0.0637}  # Replace "hey_Zelda_model" with the actual model name in your setup
 
     # Measure inference time
@@ -87,18 +87,18 @@ while True:
         Model Name         | Score | Wakeword Status | Inference Time (s) | Time into Sample (s)
         ---------------------------------------------------------
         """
-
+    wakeword_count = 0  # Initialize wakeword count
     for mdl in owwModel.prediction_buffer.keys():
         # Add scores in formatted table
         scores = list(owwModel.prediction_buffer[mdl])
         curr_score = format(scores[-1], '.20f').replace("-", "")
 
-        status = "--" + " " * 20 if scores[-1] <= 0.05 else "Wakeword Detected!"
+        status = "--" + " " * 20 if scores[-1] <= 0.637 else "Wakeword Detected!"
         output_string_header += f"""{mdl}{" "*(n_spaces - len(mdl))}   | {curr_score[0:5]} | {status} | {inference_time:.6f} | {cumulative_audio_time:.2f}
         """
         
         # Check for wakeword detection and output the time
-        if scores[-1] > 0.0637:
+        if scores[-1] > 0.637:
             wakeword_detected = True
             print(f"\nWakeword detected! Detected at {cumulative_audio_time:.2f} seconds into the audio file.\n")
 
