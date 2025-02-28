@@ -137,4 +137,4 @@ dmypy.json
 *.npy
 
 # capture activations
-examples/capture_activations*
+examples/listening_management*
