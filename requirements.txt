@@ -53,7 +53,7 @@ networkx==3.3
 numba==0.59.1
 numpy==1.26.4
 onnxruntime==1.19.0
-openwakeword==0.6.0 # install this separately with `pip install openwakeword --no-deps` 
+# openwakeword==0.6.0 # install this separately with `pip install openwakeword --no-deps` 
 packaging==24.1
 pandas==2.2.2
 pillow==10.4.0
