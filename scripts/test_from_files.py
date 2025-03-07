@@ -19,7 +19,7 @@ parser.add_argument(
     "--false_positive_dir",
     help="Directory containing the WAV files to calculate false positives per hour",
     type=str,
-    default="examples/audio/false_positive",
+    default="examples/audio/false_positive/8_19_2fpbackground_beabadoobee",
     required=False
 )
 parser.add_argument(
@@ -84,9 +84,10 @@ owwModel = Model(
     inference_framework=args.inference_framework
 )
 
-thresholds = np.logspace(-4.5, 0, num=200)
+# thresholds = np.logspace(-4.5, 0, num=200)
 # thresholds = np.logspace(-0.5, 0, num=100)
 # thresholds = np.logspace(-1.5, 0, num=100)
+thresholds = [0.0125, 0.025, 0.075, 0.1]
 patience = 1
 # Warm-up the model with a dummy input
 dummy_audio = np.zeros((5 * 16000, ), dtype=np.int16)  # 5 seconds of silence
@@ -99,62 +100,6 @@ input_dirs = args.input_dirs.split(',')
 # Prepare to store detection counts for each input directory
 all_false_rejects = []
 false_positive_counts = []
-
-# # Process each directory for false reject metrics
-# for input_dir in input_dirs:
-#     all_max_scores = []
-#     total_files = 0
-
-#     # Walk through each directory and its subdirectories
-#     for root, _, files in os.walk(input_dir):
-#         for filename in files:
-#             if filename.endswith(".wav"):
-#                 total_files += 1
-#                 filepath = os.path.join(root, filename)
-#                 sample_rate, mic_audio = scipy.io.wavfile.read(filepath)
-
-#                 # Slice the audio to the first 5 seconds
-#                 five_second_length = 5 * sample_rate  # Number of samples in 5 seconds
-#                 mic_audio = mic_audio[:five_second_length]
-
-#                 # Feed to openWakeWord model
-#                 prediction = owwModel.predict(mic_audio)
-
-#                 # Record the highest prediction score
-#                 max_score = max(prediction.values())
-#                 all_max_scores.append(max_score)
-#     # Calculate false rejects for each threshold
-#     total_activations = len(all_max_scores)
-#     print(input_dir, total_activations)
-#     # false_rejects = [total_activations - sum(1 for score in all_max_scores if score >= threshold) for threshold in thresholds]
-#     false_rejects = [((total_activations - sum(1 for score in all_max_scores if score >= threshold)) / total_activations) * 100 for threshold in thresholds]
-#     all_false_rejects.append(false_rejects)
-
-# # Process the false positive directory for raw false positive acceptance
-# all_max_scores_fp = []
-# total_files_fp = 0
-
-# for root, _, files in os.walk(args.false_positive_dir):
-#     for filename in files:
-#         if filename.endswith(".wav"):
-#             total_files_fp += 1
-#             filepath = os.path.join(root, filename)
-#             sample_rate, mic_audio = scipy.io.wavfile.read(filepath)
-
-#             # Slice the audio into two segments: 0-5 seconds and 5-10 seconds
-#             five_second_length = 10 * sample_rate  # Number of samples in 5 seconds
-#             first_segment = mic_audio[:five_second_length]
-
-#             # Process the first 5 seconds
-#             prediction_first = owwModel.predict(mic_audio)
-#             max_score_first = max(prediction_first.values())
-
-#             max_score = max_score_first
-#             all_max_scores_fp.append(max_score)
-
-# # Calculate false positive counts for each threshold
-# false_positive_counts = [sum(1 for score in all_max_scores_fp if score >= threshold) *  (720/(total_files_fp)) for threshold in thresholds]
-
 
 # Process each directory for false reject metrics
 for input_dir in input_dirs:

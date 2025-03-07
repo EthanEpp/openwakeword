@@ -693,6 +693,18 @@ def augment_clips(
             rir_waveform, sr = torchaudio.load(random.choice(RIR_paths))
             augmented_batch = reverberate(augmented_batch.cpu(), rir_waveform, rescale_amp="avg")
 
+        max_saved_clips = 3 # Set your limit
+        save_dir = "augmented_samples"
+        os.makedirs(save_dir, exist_ok=True)
+
+        saved_count = 0  # Track how many have been saved
+
+        for idx, clip in enumerate(augmented_batch.cpu().numpy()):
+            if saved_count < max_saved_clips:
+                save_path = os.path.join(save_dir, f"augmented_clip_{saved_count}.wav")
+                torchaudio.save(save_path, torch.tensor(clip).unsqueeze(0), sample_rate=sr)
+                saved_count += 1  # Increment counter
+
         # yield batch of 16-bit PCM audio data
         yield (augmented_batch.cpu().numpy()*32767).astype(np.int16)
 
