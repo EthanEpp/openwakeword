@@ -49,7 +49,7 @@ parser.add_argument(
     help="The path of a specific model to load",
     type=str,
     # default="/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/wakeword_models/hey_acuity/hey_acuity (4).onnx",
-    default="/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/wakeword_models/hey_zelda/hey_Zelda_8_15.onnx",
+    default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_cv11.onnx",
     required=False
 )
 parser.add_argument(
@@ -84,10 +84,10 @@ owwModel = Model(
     inference_framework=args.inference_framework
 )
 
-# thresholds = np.logspace(-4.5, 0, num=200)
+thresholds = np.logspace(-4.5, 0, num=200)
 # thresholds = np.logspace(-0.5, 0, num=100)
 # thresholds = np.logspace(-1.5, 0, num=100)
-thresholds = [0.0125, 0.025, 0.075, 0.1]
+# thresholds = [0.00125, 0.0025, 0.00375, 0.005, 0.00625, 0.0075, 0.01, 0.0125, 0.015, 0.0175, 0.02, 0.025, 0.0375, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.]
 patience = 1
 # Warm-up the model with a dummy input
 dummy_audio = np.zeros((5 * 16000, ), dtype=np.int16)  # 5 seconds of silence

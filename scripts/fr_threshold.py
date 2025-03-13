@@ -41,7 +41,7 @@ parser.add_argument(
     "--model_path",
     help="The path of a specific model to load",
     type=str,
-    default="/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/wakeword_models/hey_zelda/hey_Zelda_8_15.onnx",
+    default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_cv11.onnx",
     required=False
 )
 parser.add_argument(
@@ -56,7 +56,7 @@ args = parser.parse_args()
 
 # Convert threshold argument to list of floats
 # thresholds = list(map(float, args.thresholds.split(',')))
-thresholds = [0.005, 0.0075, 0.01, 0.0125, 0.015, 0.02, 0.025, 0.0375, 0.05, 0.0625, 0.075, 0.0875, 0.1, 0.1125, 0.125, 0.1375,]
+# thresholds = [0.005, 0.0075, 0.01, 0.0125, 0.015, 0.02, 0.025, 0.0375, 0.05, 0.0625, 0.075, 0.0875, 0.1, 0.1125, 0.125, 0.1375,]
 thresholds = np.logspace(-2.5, 0, num=50)
 
 patience = 1
