@@ -40,7 +40,7 @@ parser.add_argument(
     "--model_path",
     help="The path of a specific model to load",
     type=str,
-    default="/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/wakeword_models/voice_genie/voice_genie_v01.onnx",
+    default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_nexus/hey_nexus (1).onnx",
     required=False
 )
 parser.add_argument(

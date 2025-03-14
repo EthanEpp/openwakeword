@@ -12,14 +12,15 @@ parser.add_argument(
     "--input_dirs",
     help="Comma-separated list of directories containing the WAV files to process",
     type=str,
-    default="examples/audio/beta/no_back,examples/audio/beta/low_back,examples/audio/beta/med_back,examples/audio/beta/high_back",
+    # default="examples/audio/hey_nexus/no_background,examples/audio/hey_nexus/low_background,examples/audio/hey_nexus/medium_background,examples/audio/hey_nexus/high_background",
+    default="examples/audio/beta copy/no_back,examples/audio/beta copy/low_back,examples/audio/beta copy/med_back,examples/audio/beta copy/high_back",
     required=False
 )
 parser.add_argument(
     "--false_positive_dir",
     help="Directory containing the WAV files to calculate false positives per hour",
     type=str,
-    default="examples/audio/false_positive/8_19_2fpbackground_beabadoobee",
+    default="examples/audio/false_positive",
     required=False
 )
 parser.add_argument(
@@ -48,7 +49,8 @@ parser.add_argument(
     "--model_path",
     help="The path of a specific model to load",
     type=str,
-    # default="/Users/SAI/Documents/Code/wakeWord/wakeWordForked/Untitled/wakeword_models/hey_acuity/hey_acuity (4).onnx",
+    # default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_nexus/hey_nexus (1).onnx",
+    # default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_8_15.onnx",
     default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_cv11.onnx",
     required=False
 )
@@ -84,7 +86,7 @@ owwModel = Model(
     inference_framework=args.inference_framework
 )
 
-thresholds = np.logspace(-4.5, 0, num=200)
+thresholds = np.logspace(-2.5, 0, num=200)
 # thresholds = np.logspace(-0.5, 0, num=100)
 # thresholds = np.logspace(-1.5, 0, num=100)
 # thresholds = [0.00125, 0.0025, 0.00375, 0.005, 0.00625, 0.0075, 0.01, 0.0125, 0.015, 0.0175, 0.02, 0.025, 0.0375, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.]

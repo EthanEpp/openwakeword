@@ -50,7 +50,7 @@ setuptools.setup(
                 ],
         'full': [
                     'mutagen>=1.46.0,<2',
-                    'torch>=1.13.1,<3',
+                    'torch>=1.13.1,<2.6',
                     'torchaudio>=0.13.1,<1',
                     'torchinfo>=1.8.0,<2',
                     'torchmetrics>=0.11.4,<1',
