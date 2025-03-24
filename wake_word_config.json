@@ -1,0 +1,36 @@
+{
+    "version": 4,
+    "open_wake_word_enabled": true,
+    "activation_threshold": 0.02,
+    "vad_threshold": 0.0,
+    "noise_suppression": false,
+    "chunk_size": 1280,
+    "hey_zelda_path": "/data/wakeword_models/hey_zelda/hey_Zelda_8_15.onnx",
+    "voice_genie_path": "/data/wakeword_models/voice_genie/voice_genie_v01.onnx",
+    "current_model": "hey_zelda",
+    "current_model_version": "hey_Zelda_8_15",
+    "inference_framework": "onnx",
+    "record_command": "arecord -D record_left_16k -r 16000 -c 1 -f S16_LE -t raw",
+    "debounce_time": 1.5,
+    "dsp_delay": 40,
+    "dsp_check_command": "/usr/bin/awe_control_tool get_status_string 1000"
+}
+
+{
+    "version": 4,
+    "open_wake_word_enabled": true,
+    "activation_threshold": 0.02,
+    "vad_threshold": 0.0,
+    "noise_suppression": false,
+    "chunk_size": 1280,
+    "hey_zelda_path": "/data/wakeword_models/hey_zelda/hey_Zelda_8_15.onnx",
+    "voice_genie_path": "/data/wakeword_models/voice_genie/voice_genie_v01.onnx",
+    "current_model": "hey_nexus",
+    "current_model_version": "hey_nexus_full",
+    "inference_framework": "onnx",
+    "record_command": "arecord -D record_left_16k -r 16000 -c 1 -f S16_LE -t raw",
+    "debounce_time": 1.5,
+    "dsp_delay": 40,
+    "dsp_check_command": "/usr/bin/awe_control_tool get_status_string 1000",
+    "hey_nexus_path": "/data/wakeword_models/hey_nexus/hey_nexus_full.onnx"
+}

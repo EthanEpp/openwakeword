@@ -13,7 +13,7 @@ parser.add_argument(
     help="Comma-separated list of directories containing the WAV files to process",
     type=str,
     # default="examples/audio/hey_nexus/no_background,examples/audio/hey_nexus/low_background,examples/audio/hey_nexus/medium_background,examples/audio/hey_nexus/high_background",
-    default="examples/audio/beta copy/no_back,examples/audio/beta copy/low_back,examples/audio/beta copy/med_back,examples/audio/beta copy/high_back",
+    default="examples/audio/beta/no_back,examples/audio/beta/low_back,examples/audio/beta/med_back,examples/audio/beta/high_back,examples/audio/beta/max_back",
     required=False
 )
 parser.add_argument(
@@ -49,9 +49,9 @@ parser.add_argument(
     "--model_path",
     help="The path of a specific model to load",
     type=str,
-    # default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_nexus/hey_nexus (1).onnx",
+    # default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_nexus/hey_nexus_Half.onnx",
     # default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_8_15.onnx",
-    default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_cv11.onnx",
+    default="/Users/SAI/Documents/Code/openWakeWord2/wakeword_models/hey_zelda/hey_Zelda_full_cv11.onnx",
     required=False
 )
 parser.add_argument(
